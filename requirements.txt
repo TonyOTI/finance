@@ -1,0 +1,7 @@
+cs50
+Flask
+Flask-Session
+requests
+
+API key from https://iexcloud.io/console/tokens
+ran in terminal as `$ export API_KEY=value` where [value] is the API token

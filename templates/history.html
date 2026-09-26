@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Transaction History
+{% endblock %}
+
+{% block main %}
+<div>
+    <h1 style="text-decoration:underline;">Transaction History</h1>
+    <table class="table table-striped table-bordered" style="margin-top:5rem; margin-left:auto; margin-right: auto; width:50%;">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Stock</th>
+                <th scope="col">Number Of Shares Bought Or Sold</th>
+                <th scope="col">Buy / Sell</th>
+                <th scope="col">Stock Price At Time Of Transaction</th>
+                <th scope="col">Date / Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- TODO: Loop through the database entries to display them in this table -->
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.symbol.upper() }}</td>
+                <td>{{ transaction.shares | abs }}</td>
+                <td>{{ transaction.transaction_type }}</td>
+                <td>{{ transaction.price | usd }}</td>
+                <td>{{ transaction.trans_time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

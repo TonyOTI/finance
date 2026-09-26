@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block main %}
+<div>
+    <h1 style="text-decoration:underline;">{{ user }}'s Portfolio</h1>
+    <table class="table table-striped table-bordered" style="margin-top:5rem; margin-left:auto; margin-right: auto; width:50%;">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Stock</th>
+                <th scope="col">Number of Shares</th>
+                <th scope="col">Current Stock Price</th>
+                <th scope="col">Total Value of Holding</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- TODO: Loop through the database entries to display them in this table -->
+            {% for stock in stocks %}
+            <tr>
+                <td>{{ stock.symbol.upper() }}</td>
+                <td>{{ stock.shares }}</td>
+                <td>{{ current_prices[stock.symbol] | usd }}</td>
+                <td>{{ total_prices[stock.symbol] | usd }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table class="table table-striped table-bordered" style="margin-top:2rem; margin-left:auto; margin-right: auto; width:30%;">
+        <tr>
+            <th scope="row">Total Holdings</th>
+            <td>{{ holding_value | usd }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Current User Cash</th>
+            <td>{{ cash | usd }}</td>
+        </tr>
+        <tr>
+            <th class="table-dark" scope="row">Grand Total</th>
+            <td>{{ grand_total | usd }}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
